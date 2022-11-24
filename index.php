@@ -8,7 +8,6 @@ $telegram->sendMessage([
 'chat_id'=>$chat_id,
 'text'=>"Welcome to my bot"
 ]);
-
 }
 else{
 $telegram->sendMessage([
