@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/test bot",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "нр",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  }
+}
