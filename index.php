@@ -6,7 +6,7 @@ $text=$telegram->Text();
 if($text=="/start"){
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
-'text'=>"Nagap my friend 😁"
+'text'=>"Akang botmen uje 😁"
 ]);
 }
 else{
