@@ -6,13 +6,13 @@ $text=$telegram->Text();
 if($text=="/start"){
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
-'text'=>"Akang botmen uje 😁"
+'text'=>"I love you ❤️"
 ]);
 }
 else{
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
-'text'=>$text
+'text'=>"barbir I love you ❤️"
 ]);
 
 }
