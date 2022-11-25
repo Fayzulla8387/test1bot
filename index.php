@@ -6,31 +6,53 @@ $text=$telegram->Text();
 if($text=="/start"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("Biz haqimizda 📖")),
-        //Second row
-        array($telegram->buildKeyboardButton("Buyurtma berish 📝")),
+        array($telegram->buildKeyboardButton("Men haqimda 📖")),
+
         );
     $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
 "reply_markup" => $keyb,
-'text'=>"Salom mening ismim Fayzulla"
+'text'=>"Salom botimga hush kelibsiz 😊"
 ]);
 }
-else if($text=="Biz haqimizda 📖") {
+elseif($text=="Men haqimda 📖") {
     haqimizda();
 }
+else if($text=="🔙Orqaga") {
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("Men haqimda 📖")),
+        //Second row
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
+
+}
 
 
 
+///////function
 function haqimizda(){
     global $telegram, $chat_id;
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("🔙Orqaga")),
+        //Second row
+            );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
         'chat_id'=>$chat_id,
-        'text'=>"Bizning kompaniyamiz 2019 yilda tashkil topgan"
-        ]);
+        "reply_markup" => $keyb,
+        'text'=>"Men haqimda.<a href='https://telegra.ph/Salom-11-25-8'>Batafsil</a>"
+    ]);
 }
+
+
+
+
+
+
 
 
 
