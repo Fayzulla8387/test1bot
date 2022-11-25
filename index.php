@@ -6,11 +6,10 @@ $text=$telegram->Text();
 if($text=="/start"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("Nagap"), $telegram->buildKeyboardButton("Button 2")),
+        array($telegram->buildKeyboardButton("Biz haqimizda 📖")),
         //Second row
-        array($telegram->buildKeyboardButton("Button 3"), $telegram->buildKeyboardButton("Button 4"), $telegram->buildKeyboardButton("Button 5")),
-        //Third row
-        array($telegram->buildKeyboardButton("Button 6")) );
+        array($telegram->buildKeyboardButton("Buyurtma berish 📝")),
+        );
     $keyb = $telegram->buildKeyBoard($option, $onetime=false);
 
 $telegram->sendMessage([
@@ -19,14 +18,19 @@ $telegram->sendMessage([
 'text'=>"Salom mening ismim Fayzulla"
 ]);
 }
-else{
-$telegram->sendMessage([
-'chat_id'=>$chat_id,
-'text'=>$text
-]);
+else if($text=="Biz haqimizda 📖") {
+    haqimizda();
 }
 
 
+
+function haqimizda(){
+    global $telegram, $chat_id;
+    $telegram->sendMessage([
+        'chat_id'=>$chat_id,
+        'text'=>"Bizning kompaniyamiz 2019 yilda tashkil topgan"
+        ]);
+}
 
 
 
