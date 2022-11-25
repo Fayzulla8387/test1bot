@@ -10,7 +10,7 @@ if($text=="/start"){
         //Second row
         array($telegram->buildKeyboardButton("Buyurtma berish 📝")),
         );
-    $keyb = $telegram->buildKeyBoard($option, $onetime=false);
+    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
