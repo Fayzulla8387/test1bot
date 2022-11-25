@@ -44,7 +44,8 @@ function haqimizda(){
     $telegram->sendMessage([
         'chat_id'=>$chat_id,
         "reply_markup" => $keyb,
-        'text'=>"Men haqimda.<a href='https://telegra.ph/Salom-11-25-8'>Batafsil</a>"
+        'text'=>"Men haqimda.<a href='https://telegra.ph/Salom-11-25-8'>Batafsil</a>",
+        'parse_mode'=>'html'
     ]);
 }
 
