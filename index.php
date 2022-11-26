@@ -30,6 +30,7 @@ if ($text == "Buyurtma berish 🍯") {
     buyurtma();
 }
 if ($text == "🔙Orqaga") {
+
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
@@ -37,6 +38,11 @@ if ($text == "🔙Orqaga") {
         array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
     );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        "reply_markup" => $keyb,
+
+    ]);
 }
 if ($text == "1 kg asal 50000 so'm") {
     $option = array(
