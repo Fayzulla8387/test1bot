@@ -23,14 +23,11 @@ if ($text == "/start") {
         'text' => "Salom botimizga hush kelibsiz 😊 $name.$last_name"
     ]);
 }
-if ($text == "Batafsil ma'lumot 🐝") {
+elseif($text == "Batafsil ma'lumot 🐝") {
     haqimizda();
-}
-if ($text == "Buyurtma berish 🍯") {
+}elseif ($text == "Buyurtma berish 🍯") {
     buyurtma();
-}
-if ($text == "🔙Orqaga") {
-
+}elseif ($text == "🔙Orqaga") {
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
@@ -47,18 +44,19 @@ if ($text == "🔙Orqaga") {
 if ($text == "1 kg asal 50000 so'm") {
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("Yetkazib berish 🚗")),
+        array($telegram->buildKeyboardButton("Raqamni jo'natish", $request_contact = true)),
         //Second row
-        array($telegram->buildKeyboardButton("Kelib olib ketish 🚶‍")),
+
         //Third row
-        array($telegram->buildKeyboardButton("🔙Orqaga")),
+//        array($telegram->buildKeyboardButton("🔙Orqaga")),
     );
     $telegram->sendMessage([
         'chat_id' => $chat_id,
-        'text' => "Tanlang",
+        'text' => "Kerakli miqdor tanlandi endi raqamingizni yuboring",
         'parse_mode' => 'html'
     ]);
 }
+
 
 
 ///////function
@@ -96,10 +94,11 @@ function buyurtma()
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text' => "Buyurtma berish uchun quyidagi raqamga yozing: +998 88 857 83 87",
+        'text' => "Kereki miqdorini tanlang",
         'parse_mode' => 'html'
     ]);
 }
+
 
 
 
