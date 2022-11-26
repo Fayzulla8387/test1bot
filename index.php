@@ -11,9 +11,9 @@ $username=$telegram->Username();
 if($text=="/start"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝", $request_contact = true, $request_location = false)),
+        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝")),
         //Second row
-        array($telegram->buildKeyboardButton("Buyurtma berish 🍯", $request_contact = false, $request_location = true)),
+        array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
         );
     $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 
@@ -32,9 +32,9 @@ elseif($text=="Buyurtma berish ??") {
 }elseif($text=="🔙Orqaga"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝", $request_contact = true, $request_location = false)),
+        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝")),
         //Second row
-        array($telegram->buildKeyboardButton("Buyurtma berish 🍯", $request_contact = false, $request_location = true)),
+        array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
         );
     $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 }
