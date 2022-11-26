@@ -10,6 +10,7 @@ $start_text = "Salom botimizga hush kelibsiz 😊 $name.$last_name";
 $about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>";
 $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
 
+
 //if ($text == "/start") {
 //    show_start();
 //} elseif ($text == "Batafsil ma'lumot 🐝") {
@@ -31,9 +32,16 @@ switch ($text){
         buyurtma();
         break;
     case in_array($text, $order_type):
+        file_put_contents("/users/massa.txt", $text);
         aloqa();
         break;
         default:
+            switch (file_get_contents('/users/step.txt')){
+                case "phone":
+                    file_put_contents("/users/phone.txt", $text);
+                    showDelivery();
+                    break;
+            }
             break;
 }
 
@@ -103,6 +111,7 @@ function buyurtma()
 function aloqa()
 {
     global $telegram, $chat_id;
+    file_put_contents('/users/step.txt', 'phone');
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Raqamni jo'natish", $request_contact = true)),
@@ -120,8 +129,25 @@ function aloqa()
     ]);
 }
 
+function showDelivery()
+{
+    global $telegram, $chat_id;
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("✈️Yetkazib berish✈️", $request_location = true)),
+        //Second row
+        array($telegram->buildKeyboardButton("🚶‍Borib olish🚶‍")),
+        //Third row
 
-
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        "reply_markup" => $keyb,
+        'text' => "Buyurtma qabul qilindi",
+        'parse_mode' => 'html'
+    ]);
+}
 
 
 
