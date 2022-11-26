@@ -41,21 +41,17 @@ elseif($text == "Batafsil ma'lumot 🐝") {
 
     ]);
 }
-if ($text == "1 kg asal 50000 so'm") {
+elseif ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 100000 so'm" || $text == "3 kg asal 150000 so'm" || $text == "4 kg asal 190000 so'm") {
+   aloqa();
+}elseif ($text=="Boshqa miqdor"){
     $option = array(
-        //First row
-        array($telegram->buildKeyboardButton("Raqamni jo'natish", $request_contact = true)),
-        //Second row
-
-        //Third row
-//        array($telegram->buildKeyboardButton("🔙Orqaga")),
+        array($telegram->buildKeyboardButton("Yuborish 📤")),
     );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text' => "Kerakli miqdor tanlandi endi raqamingizni yuboring",
-        'parse_mode' => 'html'
+        'text' => "Kerakli miqdorni kiriting"
     ]);
 }
 
@@ -90,6 +86,8 @@ function buyurtma()
         //Third row
         array($telegram->buildKeyboardButton("3 kg asal 130000 so'm")),
         //Fourth row
+        array($telegram->buildKeyboardButton("Boshqa miqdor")),
+        //Fifth row
         array($telegram->buildKeyboardButton("🔙Orqaga")),
     );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
@@ -101,7 +99,25 @@ function buyurtma()
     ]);
 }
 
+function aloqa()
+{
+    global $telegram, $chat_id;
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("Raqamni jo'natish", $request_contact = true)),
+        //Second row
 
+        //Third row
+//        array($telegram->buildKeyboardButton("🔙Orqaga")),
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        "reply_markup" => $keyb,
+        'text' => "Kerakli miqdor tanlandi endi raqamingizni yuboring",
+        'parse_mode' => 'html'
+    ]);
+}
 
 
 
