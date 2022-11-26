@@ -6,27 +6,44 @@ $text = $telegram->Text();
 $name = $telegram->FirstName();
 $last_name = $telegram->LastName();
 $username = $telegram->Username();
-
+$start_text = "Salom botimizga hush kelibsiz 😊 $name.$last_name";
+$about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>";
+$order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
 
 if ($text == "/start") {
-   show_start();
-}
-elseif($text == "Batafsil ma'lumot 🐝") {
+    show_start();
+} elseif ($text == "Batafsil ma'lumot 🐝") {
     haqimizda();
-}elseif ($text == "Buyurtma berish 🍯") {
+} elseif ($text == "Buyurtma berish 🍯") {
     buyurtma();
-}
-elseif ($text =="1 kg - 50000 so'm" || $text=="1.5 kg(1l) -75000 so'm" || "4,5 kg(3l) - 220000 so'm" || "7,5 kg(5l) - 370000 so'm" ) {
-   aloqa();
+} elseif (in_array($text, $order_type)) {
+    aloqa();
 }
 
+switch ($text){
+    case "/start":
+        show_start();
+        break;
+    case "Batafsil ma'lumot 🐝":
+        haqimizda();
+        break;
+    case "Buyurtma berish 🍯":
+        buyurtma();
+        break;
+    case in_array($text, $order_type):
+        aloqa();
+        break;
+        default:
+            break;
+}
 
 
 ///////function
-function show_start(){
+function show_start()
+{
     global $telegram;
-    global $chat_id;
-global $name, $last_name, $username;
+    global $chat_id,$srart_text;
+    global $name, $last_name, $username;
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
@@ -38,13 +55,13 @@ global $name, $last_name, $username;
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text' => "Salom botimizga hush kelibsiz 😊 $name.$last_name"
+        'text' => $srart_text,
     ]);
 }
 
 function haqimizda()
 {
-    global $telegram, $chat_id;
+    global $telegram, $chat_id, $about_text;
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("🔙Orqaga")),
@@ -54,7 +71,7 @@ function haqimizda()
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text' => "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>",
+        'text' => $about_text,
         'parse_mode' => 'html'
     ]);
 }
@@ -78,7 +95,7 @@ function buyurtma()
     $telegram->sendMessage([
         'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text' => "Kereki miqdorini tanlang",
+        'text' => "Kerekli miqdorini tanlang",
         'parse_mode' => 'html'
     ]);
 }
@@ -102,6 +119,7 @@ function aloqa()
         'parse_mode' => 'html'
     ]);
 }
+
 
 
 
