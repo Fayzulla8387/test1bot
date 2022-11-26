@@ -1,65 +1,80 @@
 <?php
 require_once "Telegram.php";
-$telegram=new Telegram("5869126547:AAHVuiF1-pcPiTyldLE68NmHhRfGnzewIAM");
-$chat_id=$telegram->ChatID();
-$text=$telegram->Text();
-$name=$telegram->FirstName();
-$last_name=$telegram->LastName();
-$username=$telegram->Username();
+$telegram = new Telegram("5869126547:AAHVuiF1-pcPiTyldLE68NmHhRfGnzewIAM");
+$chat_id = $telegram->ChatID();
+$text = $telegram->Text();
+$name = $telegram->FirstName();
+$last_name = $telegram->LastName();
+$username = $telegram->Username();
 
 
-if($text=="/start"){
+if ($text == "/start") {
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝")),
+        array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
         //Second row
         array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
-        );
-    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
 
-$telegram->sendMessage([
-'chat_id'=>$chat_id,
-"reply_markup" => $keyb,
-'text'=>"Salom botimizga hush kelibsiz 😊 $name.$last_name"
-]);
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        "reply_markup" => $keyb,
+        'text' => "Salom botimizga hush kelibsiz 😊 $name.$last_name"
+    ]);
 }
-
-elseif($text=="Batafsil ma'lumot 🐝") {
+if ($text == "Batafsil ma'lumot 🐝") {
     haqimizda();
 }
-elseif($text=="Buyurtma berish 🍯") {
+if ($text == "Buyurtma berish 🍯") {
     buyurtma();
-}elseif($text=="🔙Orqaga"){
+}
+if ($text == "🔙Orqaga") {
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝")),
+        array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
         //Second row
         array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
-        );
-    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
+    );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
 }
-
-
-
+if ($text == "1 kg asal 50000 so'm") {
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("Yetkazib berish 🚗")),
+        //Second row
+        array($telegram->buildKeyboardButton("Kelib olib ketish 🚶‍")),
+        //Third row
+        array($telegram->buildKeyboardButton("🔙Orqaga")),
+    );
+    $telegram->sendMessage([
+        'chat_id' => $chat_id,
+        'text' => "Tanlang",
+        'parse_mode' => 'html'
+    ]);
+}
 
 
 ///////function
-function haqimizda(){
+function haqimizda()
+{
     global $telegram, $chat_id;
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("🔙Orqaga")),
         //Second row
-            );
+    );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
-        'chat_id'=>$chat_id,
+        'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text'=>"Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>",
-        'parse_mode'=>'html'
+        'text' => "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>",
+        'parse_mode' => 'html'
     ]);
 }
-function buyurtma(){
+
+function buyurtma()
+{
     global $telegram, $chat_id;
     $option = array(
         //First row
@@ -70,30 +85,16 @@ function buyurtma(){
         array($telegram->buildKeyboardButton("3 kg asal 130000 so'm")),
         //Fourth row
         array($telegram->buildKeyboardButton("🔙Orqaga")),
-            );
+    );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
-        'chat_id'=>$chat_id,
+        'chat_id' => $chat_id,
         "reply_markup" => $keyb,
-        'text'=>"Buyurtma berish uchun quyidagi raqamga yozing: +998 88 857 83 87",
-        'parse_mode'=>'html'
+        'text' => "Buyurtma berish uchun quyidagi raqamga yozing: +998 88 857 83 87",
+        'parse_mode' => 'html'
     ]);
 }
-if ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 900000 so'm" || $text == "3 kg asal 130000 so'm") {
-    $option = array(
-        //First row
-        array($telegram->buildKeyboardButton("Yetkazib berish 🚗")),
-        //Second row
-        array($telegram->buildKeyboardButton("Kelib olib ketish 🚶‍")),
-        //Third row
-        array($telegram->buildKeyboardButton("🔙Orqaga")),
-            );
-    $telegram->sendMessage([
-        'chat_id'=>$chat_id,
-        'text'=>"Tanlang",
-        'parse_mode'=>'html'
-    ]);
-}
+
 
 
 
