@@ -50,8 +50,10 @@ if ($text == "1 kg asal 50000 so'm") {
         //Third row
 //        array($telegram->buildKeyboardButton("🔙Orqaga")),
     );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
         'chat_id' => $chat_id,
+        "reply_markup" => $keyb,
         'text' => "Kerakli miqdor tanlandi endi raqamingizni yuboring",
         'parse_mode' => 'html'
     ]);
