@@ -27,7 +27,7 @@ $telegram->sendMessage([
 elseif($text=="Batafsil ma'lumot 🐝") {
     haqimizda();
 }
-elseif($text=="Buyurtma berish ??") {
+elseif($text=="Buyurtma berish 🍯") {
     buyurtma();
 }elseif($text=="🔙Orqaga"){
     $option = array(
