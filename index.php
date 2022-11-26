@@ -9,6 +9,24 @@ $username = $telegram->Username();
 
 
 if ($text == "/start") {
+   show_start();
+}
+elseif($text == "Batafsil ma'lumot 🐝") {
+    haqimizda();
+}elseif ($text == "Buyurtma berish 🍯") {
+    buyurtma();
+}
+elseif ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 100000 so'm" || $text == "3 kg asal 150000 so'm" || $text == "4 kg asal 190000 so'm") {
+   aloqa();
+}
+
+
+
+///////function
+function show_start(){
+    global $telegram;
+    global $chat_id;
+global $name, $last_name, $username;
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
@@ -23,41 +41,7 @@ if ($text == "/start") {
         'text' => "Salom botimizga hush kelibsiz 😊 $name.$last_name"
     ]);
 }
-elseif($text == "Batafsil ma'lumot 🐝") {
-    haqimizda();
-}elseif ($text == "Buyurtma berish 🍯") {
-    buyurtma();
-}elseif ($text == "🔙Orqaga") {
-    $option = array(
-        //First row
-        array($telegram->buildKeyboardButton("Batafsil ma'lumot 🐝")),
-        //Second row
-        array($telegram->buildKeyboardButton("Buyurtma berish 🍯")),
-    );
-    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
-    $telegram->sendMessage([
-        'chat_id' => $chat_id,
-        "reply_markup" => $keyb,
 
-    ]);
-}
-elseif ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 100000 so'm" || $text == "3 kg asal 150000 so'm" || $text == "4 kg asal 190000 so'm") {
-   aloqa();
-}elseif ($text=="Boshqa miqdor"){
-    $option = array(
-        array($telegram->buildKeyboardButton("Yuborish 📤")),
-    );
-    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
-    $telegram->sendMessage([
-        'chat_id' => $chat_id,
-        "reply_markup" => $keyb,
-        'text' => "Kerakli miqdorni kiriting"
-    ]);
-}
-
-
-
-///////function
 function haqimizda()
 {
     global $telegram, $chat_id;
@@ -80,15 +64,15 @@ function buyurtma()
     global $telegram, $chat_id;
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("1 kg asal 50000 so'm")),
+        array($telegram->buildKeyboardButton("1 kg - 50000 so'm")),
         //Second row
-        array($telegram->buildKeyboardButton("2 kg asal 900000 so'm")),
+        array($telegram->buildKeyboardButton("1.5 kg(1l) -75000 so'm")),
         //Third row
-        array($telegram->buildKeyboardButton("3 kg asal 130000 so'm")),
+        array($telegram->buildKeyboardButton("4,5 kg(3l) - 220000 so'm")),
         //Fourth row
-        array($telegram->buildKeyboardButton("Boshqa miqdor")),
+        array($telegram->buildKeyboardButton("7,5 kg(5l) - 370000 so'm")),
         //Fifth row
-        array($telegram->buildKeyboardButton("🔙Orqaga")),
+//        array($telegram->buildKeyboardButton("🔙Orqaga")),
     );
     $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
     $telegram->sendMessage([
