@@ -11,33 +11,35 @@ $username=$telegram->Username();
 if($text=="/start"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("Men haqimda 📖")),
+        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝", $request_contact = true, $request_location = false)),
+        //Second row
+        array($telegram->buildKeyboardButton("Buyurtma berish 🍯", $request_contact = false, $request_location = true)),
         );
     $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 
 $telegram->sendMessage([
 'chat_id'=>$chat_id,
 "reply_markup" => $keyb,
-'text'=>"Salom botimga hush kelibsiz 😊 $name.$last_name"
+'text'=>"Salom botimizga hush kelibsiz 😊 $name.$last_name"
 ]);
 }
 
-elseif($text=="Men haqimda 📖") {
+elseif($text=="Batafsil ma'lumot 🐝") {
     haqimizda();
 }
-elseif($text=="🔙Orqaga") {
+elseif($text=="Buyurtma berish ??") {
+    buyurtma();
+}elseif($text=="🔙Orqaga"){
     $option = array(
         //First row
-        array($telegram->buildKeyboardButton("Men haqimda 📖")),
+        array($telegram->buildKeyboardButton( "Batafsil ma'lumot 🐝", $request_contact = true, $request_location = false)),
         //Second row
-    );
-    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
-  $telegram->sendMessage([
-        'chat_id' => $chat_id,
-        "reply_markup" => $keyb,
-        'text' => "Salom botimga hush kelibsiz ??"
-    ]);
+        array($telegram->buildKeyboardButton("Buyurtma berish 🍯", $request_contact = false, $request_location = true)),
+        );
+    $keyb = $telegram->buildKeyBoard($option, $onetime=false, $resize=true);
 }
+
+
 
 
 
@@ -53,12 +55,45 @@ function haqimizda(){
     $telegram->sendMessage([
         'chat_id'=>$chat_id,
         "reply_markup" => $keyb,
-        'text'=>"Men haqimda.<a href='https://telegra.ph/Salom-11-25-8'>Batafsil</a>",
+        'text'=>"Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>",
         'parse_mode'=>'html'
     ]);
 }
-
-
+function buyurtma(){
+    global $telegram, $chat_id;
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("1 kg asal 50000 so'm")),
+        //Second row
+        array($telegram->buildKeyboardButton("2 kg asal 900000 so'm")),
+        //Third row
+        array($telegram->buildKeyboardButton("3 kg asal 130000 so'm")),
+        //Fourth row
+        array($telegram->buildKeyboardButton("🔙Orqaga")),
+            );
+    $keyb = $telegram->buildKeyBoard($option, $onetime = false, $resize = true);
+    $telegram->sendMessage([
+        'chat_id'=>$chat_id,
+        "reply_markup" => $keyb,
+        'text'=>"Buyurtma berish uchun quyidagi raqamga yozing: +998 88 857 83 87",
+        'parse_mode'=>'html'
+    ]);
+}
+if ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 900000 so'm" || $text == "3 kg asal 130000 so'm") {
+    $option = array(
+        //First row
+        array($telegram->buildKeyboardButton("Yetkazib berish 🚗")),
+        //Second row
+        array($telegram->buildKeyboardButton("Kelib olib ketish 🚶‍")),
+        //Third row
+        array($telegram->buildKeyboardButton("🔙Orqaga")),
+            );
+    $telegram->sendMessage([
+        'chat_id'=>$chat_id,
+        'text'=>"Tanlang",
+        'parse_mode'=>'html'
+    ]);
+}
 
 
 
