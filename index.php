@@ -16,7 +16,7 @@ elseif($text == "Batafsil ma'lumot 🐝") {
 }elseif ($text == "Buyurtma berish 🍯") {
     buyurtma();
 }
-elseif ($text == "1 kg asal 50000 so'm" || $text == "2 kg asal 100000 so'm" || $text == "3 kg asal 150000 so'm" || $text == "4 kg asal 190000 so'm") {
+elseif ($text =="1 kg - 50000 so'm" || $text=="1.5 kg(1l) -75000 so'm" || "4,5 kg(3l) - 220000 so'm" || "7,5 kg(5l) - 370000 so'm" ) {
    aloqa();
 }
 
