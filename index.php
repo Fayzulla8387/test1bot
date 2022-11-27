@@ -12,10 +12,7 @@ $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220
 
 $data=$telegram->getData();
 $message=$data["message"];
-$telegram->sendMessage([
-"chat_id" => $telegram->ChatID(),
-"text" => json_encode($data, JSON_PRETTY_PRINT)
-]);
+
 $text=$message["text"];
 $chat_id=$message["chat"]["id"];
 
@@ -53,6 +50,10 @@ switch ($text) {
                     }else{
                         file_put_contents("users/phone.txt",$text);
                     }
+                    $telegram->sendMessage([
+                        "chat_id" => $telegram->ChatID(),
+                        "text" => $message['contact']['phone_number'],
+                    ]);
                     showDelivery();
                     break;
             }
