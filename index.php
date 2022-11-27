@@ -10,6 +10,12 @@ $start_text = "Salom botimizga hush kelibsiz 😊 $name.$last_name";
 $about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>";
 $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
 
+$data=$telegram->getData();
+$telegram->sendMessage([
+"chat_id" => $chat_id,
+"text" => json_encode($data, JSON_PRETTY_PRINT)
+]);
+
 
 //if ($text == "/start") {
 //    show_start();
@@ -150,9 +156,3 @@ function showDelivery()
         'parse_mode' => 'html'
     ]);
 }
-
-
-
-
-
-
