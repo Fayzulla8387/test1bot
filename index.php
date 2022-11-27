@@ -1,8 +1,8 @@
 <?php
 require_once "Telegram.php";
 $telegram = new Telegram("5869126547:AAHVuiF1-pcPiTyldLE68NmHhRfGnzewIAM");
-$chat_id = $telegram->ChatID();
-$text = $telegram->Text();
+//$chat_id = $telegram->ChatID();
+//$text = $telegram->Text();
 $name = $telegram->FirstName();
 $last_name = $telegram->LastName();
 $username = $telegram->Username();
@@ -11,11 +11,13 @@ $about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarich
 $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
 
 $data=$telegram->getData();
+$message=$data["message"];
 $telegram->sendMessage([
-"chat_id" => $chat_id,
+"chat_id" => $telegram->ChatID(),
 "text" => json_encode($data, JSON_PRETTY_PRINT)
 ]);
-
+$text=$message["text"];
+$chat_id=$message["chat"]["id"];
 
 //if ($text == "/start") {
 //    show_start();
@@ -44,7 +46,13 @@ switch ($text) {
         } else {
             switch (file_get_contents('users/step.txt')) {
                 case "phone":
-                    file_put_contents("users/phone.txt", $text);
+                    if ($message["contact"]["phone_number"]!=" "){
+                        $phone=$message["contact"]["phone_number"];
+                        file_put_contents("users/phone.txt",$phone);
+                        showDelivery();
+                    }else{
+                        file_put_contents("users/phone.txt",$text);
+                    }
                     showDelivery();
                     break;
             }
@@ -118,7 +126,8 @@ function buyurtma()
 
 function aloqa()
 {
-    global $telegram, $chat_id;
+    global $telegram, $chat_id,$message;
+
     file_put_contents('users/step.txt', 'phone');
     $option = array(
         //First row
