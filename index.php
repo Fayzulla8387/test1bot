@@ -33,12 +33,12 @@ switch ($text) {
         break;
     default:
         if (in_array($text, $order_type)) {
-            file_put_contents("/users/massa.txt", $text);
+            file_put_contents("users/massa.txt", $text);
             aloqa();
         } else {
-            switch (file_get_contents('/users/step.txt')) {
+            switch (file_get_contents('users/step.txt')) {
                 case "phone":
-                    file_put_contents("/users/phone.txt", $text);
+                    file_put_contents("users/phone.txt", $text);
                     showDelivery();
                     break;
             }
@@ -113,7 +113,7 @@ function buyurtma()
 function aloqa()
 {
     global $telegram, $chat_id;
-    file_put_contents('/users/step.txt', 'phone');
+    file_put_contents('users/step.txt', 'phone');
     $option = array(
         //First row
         array($telegram->buildKeyboardButton("Raqamni jo'natish", $request_contact = true)),
