@@ -21,7 +21,7 @@ $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220
 //    aloqa();
 //}
 
-switch ($text){
+switch ($text) {
     case "/start":
         show_start();
         break;
@@ -31,18 +31,20 @@ switch ($text){
     case "Buyurtma berish 🍯":
         buyurtma();
         break;
-    case in_array($text, $order_type):
-        file_put_contents("/users/massa.txt", $text);
-        aloqa();
-        break;
-        default:
-            switch (file_get_contents('/users/step.txt')){
+    default:
+        if (in_array($text, $order_type)) {
+            file_put_contents("/users/massa.txt", $text);
+            aloqa();
+        } else {
+            switch (file_get_contents('/users/step.txt')) {
                 case "phone":
                     file_put_contents("/users/phone.txt", $text);
                     showDelivery();
                     break;
             }
-            break;
+
+
+        }
 }
 
 
@@ -50,7 +52,7 @@ switch ($text){
 function show_start()
 {
     global $telegram;
-    global $chat_id,$start_text;
+    global $chat_id, $start_text;
     global $name, $last_name, $username;
     $option = array(
         //First row
