@@ -46,7 +46,6 @@ switch ($text) {
                     if ($message["contact"]["phone_number"]!=" "){
                         $phone=$message["contact"]["phone_number"];
                         file_put_contents("users/phone.txt",$phone);
-                        showDelivery();
                     }else{
                         file_put_contents("users/phone.txt",$text);
                     }
