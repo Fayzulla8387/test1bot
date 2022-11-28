@@ -34,8 +34,18 @@ try {
         case "Buyurtma berish 🍯":
             buyurtma();
             break;
-        case in_array($text, $order_type):
+        case "1 kg - 50000 so'm":
             aloqa();
+            break;
+        case "1.5 kg(1l) -75000 so'm":
+            aloqa();
+            break;
+        case "4,5 kg(3l) - 220000 so'm":
+            aloqa();
+            break;
+        case "7,5 kg(5l) - 370000 so'm":
+            aloqa();
+            break;
         case "delivery":
             showDelivery();
 
