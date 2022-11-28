@@ -18,7 +18,8 @@ $message = $data["message"];
 //]);
 //$text = $message["text"];
 //$chat_id = $message["chat"]["id"];
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 $e_message="!Xatolik";
 try {
 
