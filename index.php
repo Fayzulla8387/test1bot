@@ -10,22 +10,31 @@ $username = $telegram->Username();
 $start_text = "Salom botimizga hush kelibsiz 😊 $name.$last_name";
 $about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>";
 $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
-
+global  $conn;
 $data = $telegram->getData();
 $message = $data["message"];
-//$telegram->sendMessage([
-//    "chat_id" => $telegram->ChatID(),
-//    "text" => $message['contact']['phone_number'],
-//]);
-//$text = $message["text"];
-//$chat_id = $message["chat"]["id"];
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+//
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 $e_message = "!Xatolik";
 try {
-    $sql = "SELECT 'page' FROM `users` WHERE `chat_id` = '$chat_id'";
+    $page = "";
+    $sql = "SELECT * FROM users where chat_id = '$chat_id'";
     $result = $conn->query($sql);
-    $page = $result->fetch_assoc()['page'];
+    if ($result->num_rows != 0) {
+        $sql = "SELECT page FROM users where chat_id = '$chat_id'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if (isset($row["page"])) {
+            $page = $row["page"];
+        }else{
+            $page = "";
+        }
+    echo $page;
+    }
+    if ($text == "/start" && $page == "") {
+        showStart();
+    }
     switch ($page) {
         case "main":
             {
@@ -64,49 +73,7 @@ try {
                 case "/start":
                     show_start();
                     break;
-                case "Batafsil ma'lumot 🐝":
-                    haqimizda();
-                    break;
-                case "Buyurtma berish 🍯":
-                    buyurtma();
-                    break;
-                case "1 kg - 50000 so'm":
-                    aloqa();
-                    break;
-                case "1.5 kg(1l) -75000 so'm":
-                    aloqa();
-                    break;
-                case "4,5 kg(3l) - 220000 so'm":
-                    aloqa();
-                    break;
-                case "7,5 kg(5l) - 370000 so'm":
-                    aloqa();
-                    break;
-                case "delivery":
-                    showDelivery();
 
-                default:
-                    alert();
-                    break;
-//        if (in_array($text, $order_type)) {
-//            file_put_contents("users/massa.txt", $text);
-//            aloqa();
-//        } else {
-//            switch (file_get_contents('users/step.txt')) {
-//                case "phone":
-//                    if ($message["contact"]["phone_number"] != " ") {
-//                        $phone = $message["contact"]["phone_number"];
-//                        file_put_contents("users/phone.txt", $phone);
-//                    } else {
-//                        file_put_contents("users/phone.txt", $text);
-//                    }
-//
-//                    showDelivery();
-//                    break;
-//            }
-//
-//
-//        }
 
             }
 

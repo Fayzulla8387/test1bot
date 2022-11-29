@@ -6,6 +6,7 @@ $servername = "us-cdbr-east-06.cleardb.net";
 $username = "b882aadfdb7fdf";
 $password = "b32701d8";
 $dbname = "heroku_0d2f6f079e14839";
+global $conn;
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
