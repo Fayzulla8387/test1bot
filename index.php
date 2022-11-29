@@ -33,7 +33,7 @@ try {
     echo $page;
     }
     if ($text == "/start" && $page == "") {
-        showStart();
+        show_start();
     }
     switch ($page) {
         case "main":
