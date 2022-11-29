@@ -203,11 +203,11 @@ try {
     sendMessage($e_message);
 
 }
-function sendMessage($message)
-{
-    global $telegram, $chat_id;
-    $telegram->sendMessage([
-        'chat_id' => $chat_id,
-        'text' => $message,
-    ]);
-}
+//function sendMessage($message)
+//{
+//    global $telegram, $chat_id;
+//    $telegram->sendMessage([
+//        'chat_id' => $chat_id,
+//        'text' => $message,
+//    ]);
+//}
