@@ -10,7 +10,7 @@ $username = $telegram->Username();
 $start_text = "Salom botimizga hush kelibsiz 😊 $name.$last_name";
 $about_text = "Biz haqimizda.<a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Batafsil</a>";
 $order_type = ["1 kg - 50000 so'm", " 1.5 kg(1l) -75000 so'm", "4,5 kg(3l) - 220000 so'm", "7,5 kg(5l) - 370000 so'm"];
-global  $conn;
+global $conn;
 $data = $telegram->getData();
 $message = $data["message"];
 //
@@ -25,14 +25,9 @@ try {
         $sql = "SELECT page FROM users where chat_id = '$chat_id'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        if (isset($row["page"])) {
-            $page = $row["page"];
-        }else{
-            $page = "";
-        }
-    echo $page;
+        $page = $row["page"] ?? "";
     }
-    if ($text == "/start" && $page == "") {
+    if ($text == "/start" || $page == "") {
         show_start();
     }
     switch ($page) {
@@ -69,13 +64,7 @@ try {
                     $conn->query($sql);
                 }
             }
-            switch ($text) {
-                case "/start":
-                    show_start();
-                    break;
 
-
-            }
 
 
 ///////function
