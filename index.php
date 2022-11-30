@@ -1,6 +1,9 @@
 <?php
+$e_message = "!Xatolik";
+try {
 require_once 'connect.php';
 include 'Telegram.php';
+
 $telegram = new Telegram('5869126547:AAHVuiF1-pcPiTyldLE68NmHhRfGnzewIAM');
 $chat_id = $telegram->ChatID();
 $text = $telegram->Text();
@@ -14,8 +17,7 @@ $data = $telegram->getData();
 $message = $data['message'];
 $name = $message['from']['first_name'];
 $date = date('Y-m-d H:i:s', $message['date']);
-$e_message = "!Xatolik";
-try {
+
 $step = "";
 $sql = "SELECT * FROM users where chat_id = '$chat_id'";
 $result = $conn->query($sql);
