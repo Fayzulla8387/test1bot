@@ -15,7 +15,8 @@ $data = $telegram->getData();
 $message = $data['message'];
 $name = $message['from']['first_name'];
 $date = date('Y-m-d H:i:s', $message['date']);
-
+$e_message = "!Xatolik";
+try {
 $step = "";
 $sql = "SELECT * FROM users where chat_id = '$chat_id'";
 $result = $conn->query($sql);
@@ -299,5 +300,11 @@ function alert()
     ];
     $telegram->sendMessage($content);
 }
+} catch (Throwable $e) {
+    $e_message .= $e->getMessage() . "\n Qator-";
+    $e_message .= $e->getLine() . "\n File-";
+    $e_message .= $e->getFile();
+    sendMessage($e_message);
 
+}
 ?>
