@@ -262,7 +262,7 @@ function giveMe()
         $telegram->sendLocation($content);
     }
 
-    $sql = "UPDATE users SET page = 'wait', created_at = '$date' WHERE chat_id = '$chat_id'";
+    $sql = "UPDATE users SET page = 'wait' WHERE chat_id = '$chat_id'";
     $conn->query($sql);
     $option = array(
         array($telegram->buildKeyboardButton("Boshqa buyurtma berish")),
