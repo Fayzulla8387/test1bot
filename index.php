@@ -59,7 +59,7 @@ switch ($step) {
     case "order":
         if (in_array($text, $orders)) {
             $index = array_search($text, $orders);
-            $sql = "UPDATE users SET page = 'phone', product = '$index' WHERE chat_id = '$chat_id'";
+            $sql = "UPDATE users SET page = 'phone' WHERE chat_id = '$chat_id'";
             $conn->query($sql);
             askContact();
         } elseif ($text == "🔙 Orqaga") {
@@ -245,8 +245,9 @@ function giveMe()
     $row = $result->fetch_assoc();
 
     $adminText = "Buyurtmachi: " . $row['name'] . "\n" .
-        "Telefon raqami: " . $row['phone'] . "\n" .
-        "Mahsulot: " . $orders[$row['product']] . "\n";
+        "Telefon raqami: " . $row['phone'] . "\n" ;
+
+
     $content = [
         'chat_id' => $admin_chat_id,
         'text' => $adminText,
