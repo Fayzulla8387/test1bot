@@ -157,7 +157,7 @@ function showAbout()
     global $telegram, $chat_id;
     $content = [
         'chat_id' => $chat_id,
-        'text' => "Biz haqimizda ma'lumot. <a href='https://telegra.ph/Biz-haqimizda-08-27-2'>Ko'rish</a>",
+        'text' => "Biz haqimizda ma'lumot. <a href='https://telegra.ph/Tabiiy-asalni-asalarichilardan-oling-11-26'>Ko'rish</a>",
         'parse_mode' => 'html',
     ];
     $telegram->sendMessage($content);
