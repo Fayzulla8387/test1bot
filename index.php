@@ -121,6 +121,13 @@ switch ($step) {
         break;
 }
 
+} catch (Throwable $e) {
+    $e_message .= $e->getMessage() . "\n Qator-";
+    $e_message .= $e->getLine() . "\n File-";
+    $e_message .= $e->getFile();
+    sendMessage($e_message);
+
+}
 function showStart()
 {
     global $telegram, $chat_id, $name, $date, $conn;
@@ -300,13 +307,7 @@ function alert()
     ];
     $telegram->sendMessage($content);
 }
-} catch (Throwable $e) {
-    $e_message .= $e->getMessage() . "\n Qator-";
-    $e_message .= $e->getLine() . "\n File-";
-    $e_message .= $e->getFile();
-    sendMessage($e_message);
 
-}
 function sendMessage($text)
 {
     global $chat_id, $telegram;
