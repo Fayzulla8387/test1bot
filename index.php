@@ -1,7 +1,6 @@
 <?php
 require_once 'connect.php';
 include 'Telegram.php';
-
 $telegram = new Telegram('5869126547:AAHVuiF1-pcPiTyldLE68NmHhRfGnzewIAM');
 $chat_id = $telegram->ChatID();
 $text = $telegram->Text();
@@ -35,7 +34,7 @@ $orders = [
     "7.5kg(5L) - 370 000 so'm",
 ];
 
-if ($text == "/start" && $step == "") {
+if ($text == "/start") {
     showStart();
 }
 
@@ -126,12 +125,11 @@ function showStart()
     $sql = "SELECT * from users WHERE chat_id='$chat_id'";
     $result = $conn->query($sql);
     if ($result->num_rows == 0) {
-        $sql = "insert into users (chat_id,name,created_at,step) values ('$chat_id','$name','$date','start')";
-        $conn->query($sql);
+        $sql = "insert into users (chat_id,name,page) values ('$chat_id','$name','start')";
     } else {
         $sql = "UPDATE users SET page = 'start' WHERE chat_id = '$chat_id'";
-        $conn->query($sql);
     }
+    $conn->query($sql);
     $option = array(
         array($telegram->buildKeyboardButton("📜 Biz haqimizda")),
         array($telegram->buildKeyboardButton("🚛 Buyurtma berish")),
@@ -306,5 +304,14 @@ function alert()
     $e_message .= $e->getFile();
     sendMessage($e_message);
 
+}
+function sendMessage($text)
+{
+    global $chat_id, $telegram;
+    $content = [
+        'chat_id' => $chat_id,
+        'text' => $text
+    ];
+    $telegram->sendMessage($content);
 }
 ?>
