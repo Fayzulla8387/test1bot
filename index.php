@@ -53,7 +53,7 @@ switch ($step) {
                 showOrder();
                 break;
             default:
-                alert();
+          break;
         }
         break;
     case "order":
